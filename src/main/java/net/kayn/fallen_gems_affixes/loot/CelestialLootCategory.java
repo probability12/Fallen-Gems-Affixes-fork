@@ -24,6 +24,14 @@ public class CelestialLootCategory {
             CelestialLootCategory::isCelestialRanged,
             new EquipmentSlot[]{EquipmentSlot.MAINHAND}
     );
+  
+    private static boolean isCelestialMelee(ItemStack stack) {
+    return false; // Disable categorizing melee Celestisynth entirely
+}
+
+private static boolean isCelestialRanged(ItemStack stack) {
+    return false; // Disable categorizing ranged Celestisynth entirely
+}
 
     private static boolean isCelestialMelee(ItemStack stack) {
         return stack.getItem() instanceof CSWeapon && !isRanged(stack);
