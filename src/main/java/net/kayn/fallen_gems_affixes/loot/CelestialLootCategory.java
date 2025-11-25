@@ -3,7 +3,6 @@ package net.kayn.fallen_gems_affixes.loot;
 import dev.shadowsoffire.apotheosis.adventure.loot.LootCategory;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import org.thecelestialworkshop.celestisynth.api.item.CSWeapon;
 
 import java.util.Set;
 
@@ -24,23 +23,17 @@ public class CelestialLootCategory {
             CelestialLootCategory::isCelestialRanged,
             new EquipmentSlot[]{EquipmentSlot.MAINHAND}
     );
-  
-    private static boolean isCelestialMelee(ItemStack stack) {
-    return false; // Disable categorizing melee Celestisynth entirely
-}
 
-private static boolean isCelestialRanged(ItemStack stack) {
-    return false; // Disable categorizing ranged Celestisynth entirely
-}
-
+    // Completely disable categorizing ANYTHING as celestial
     private static boolean isCelestialMelee(ItemStack stack) {
-        return stack.getItem() instanceof CSWeapon && !isRanged(stack);
+        return false;
     }
 
     private static boolean isCelestialRanged(ItemStack stack) {
-        return stack.getItem() instanceof CSWeapon && isRanged(stack);
+        return false;
     }
 
+    // Leave helper here only to avoid crashes if other code references it
     private static boolean isRanged(ItemStack stack) {
         return RANGED_SET.stream().anyMatch(c -> c.isValid(stack));
     }
